@@ -1,0 +1,17 @@
+*.gem
+.bundle
+Gemfile.lock
+pkg/*
+.rvmrc
+.DS_Store
+
+# docs
+rdoc
+doc
+.yardoc
+
+# vim
+*.swp
+
+# rcov generated
+coverage
