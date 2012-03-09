@@ -1,3 +1,3 @@
-module Quixote
+class Quixote
   VERSION = "0.0.1"
 end
