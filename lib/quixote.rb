@@ -4,13 +4,13 @@ $:.unshift(File.dirname(__FILE__)) unless
 require "quixote/version"
 
 class Quixote
-  attr_accessor :min, :max, :varies_by, :last
+  attr_accessor :min, :max, :range_by, :last
 
   def initialize(options={})
     defaults = {
       :max => 100,
       :min => 0,
-      :varies_by => 10
+      :range_by => 10
     }
 
     defaults.merge(options).each do |key, value|
@@ -34,12 +34,12 @@ class Quixote
   private
 
   def increment
-    @last += rand(varies_by+1)
+    @last += rand(range_by+1)
     @last = max if last > max
   end
 
   def decrement
-    @last -= rand(varies_by+1)
+    @last -= rand(range_by+1)
     @last = min if last < min
   end
 end
