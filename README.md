@@ -13,12 +13,14 @@ Then, in your application or script:
 
     require 'quixote'
 
-## Usage
+## Basic Usage
 
 For each data stream you want to generate, set up a `Quixote` object. Here are some examples:
 
-    percentage = Quixote.new(:min => 0, :max => 100, :varies_by => 10)
-    fahrenheit = Quixote.new(:min => -30.0, :max => 120.0, :varies_by => 3.0)
+    percentage = Quixote.new(:min => 0, :max => 100, :range_by => 10)
+    fahrenheit = Quixote.new(:min => -30.0, :max => 120.0, :range_by => 3.0)
+    
+If you don't specify any initialization options the object will be assumed to be a percentage and will default to the settings of the `percentage` object above.
     
 An initial value will be randomly generated and can be accessed with `#last`:
 
@@ -28,7 +30,7 @@ If you want to enforce a certain starting value, just set last to whatever you w
 
 	percentage.last = 60
 
-To get the following values just call `#next`:
+By default each following value will range up or down by a random value up to a max of `range_by`. To get a series of stateful values just call `#next`:
 
     percentage.next #=> 64
     percentage.next #=> 66
@@ -42,6 +44,7 @@ This makes it trivial to generate stateful runs of any length you want:
     100.times { values << percentage.next }
     
     values #=> [49, 55, 48, …]
+
 
 ## Contribution
 
