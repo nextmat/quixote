@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.email       = ["matt@modal.org"]
   s.homepage    = "https://github.com/nextmat/quixote"
   s.summary     = %q{Simple stateful generator for time-series data}
-  s.description = %q{}
+  s.description = %q{A flexible, stateful generator for sample time-series data}
 
   #s.rubyforge_project = "quixote"
   
