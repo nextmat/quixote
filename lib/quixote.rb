@@ -17,7 +17,7 @@ class Quixote
       send("#{key}=", value)
     end
 
-    @last = rand(max+1)
+    @last = random_start_point
   end
 
   def next
@@ -41,5 +41,9 @@ class Quixote
   def decrement
     @last -= rand(range_by+1)
     @last = min if last < min
+  end
+  
+  def random_start_point
+    rand((max-min)+1) + min
   end
 end
