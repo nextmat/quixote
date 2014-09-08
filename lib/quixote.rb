@@ -8,9 +8,9 @@ class Quixote
 
   def initialize(options={})
     defaults = {
-      :max => 100,
-      :min => 0,
-      :range_by => 10
+      max: 100,
+      min: 0,
+      range_by: 10
     }
 
     defaults.merge(options).each do |key, value|
@@ -42,7 +42,7 @@ class Quixote
     @last -= rand(range_by+1)
     @last = min if last < min
   end
-  
+
   def random_start_point
     rand((max-min)+1) + min
   end

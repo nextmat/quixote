@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.description = %q{A flexible, stateful generator for sample time-series data}
 
   #s.rubyforge_project = "quixote"
-  
+
   s.rdoc_options = ["--charset=UTF-8"]
   s.extra_rdoc_files = %w[LICENSE]
 
