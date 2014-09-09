@@ -1,5 +1,3 @@
-puts "running"
-
 require "helper"
 
 class TextQuixote < MiniTest::Spec
@@ -55,6 +53,18 @@ class TextQuixote < MiniTest::Spec
     assert_equal 0, deltas.min
   end
 
+  def test_floats
+    q = Quixote.new(min: 1.0, max: 100.0, range_by: 10.0)
+    values = []
+    1000.times do
+      last = q.last
+      latest = q.next
+      # puts "last: #{last}, latest: #{latest}, delta: #{latest-last}"
+      refute_equal last, latest
+      assert_in_delta last, latest, 10.0
+    end
+  end
+
   def test_increment_lambda
     by_two = ->(last) { last + 2 }
     q = Quixote.new(start: 0, progress: by_two)
@@ -67,11 +77,7 @@ class TextQuixote < MiniTest::Spec
     alternate = lambda do |last|
       @runs ||= 0
       @runs += 1
-      if (@runs % 2) == 0
-        0
-      else
-        5
-      end
+      if (@runs % 2) == 0 then 0 else 5 end
     end
     q = Quixote.new(start: 0, progress: alternate)
 

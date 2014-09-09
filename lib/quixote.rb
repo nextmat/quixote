@@ -38,17 +38,21 @@ class Quixote
   private
 
   def increment
-    @last += rand(range_by+1)
+    @last += interval
     @last = max if last > max
   end
 
   def decrement
-    @last -= rand(range_by+1)
+    @last -= interval
     @last = min if last < min
   end
 
+  def interval
+    rand(0..range_by)
+  end
+
   def random_start_point
-    rand((max-min)+1) + min
+    rand(min..max)
   end
 
   def run_custom
