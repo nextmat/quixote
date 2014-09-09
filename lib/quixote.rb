@@ -4,9 +4,11 @@ $:.unshift(File.dirname(__FILE__)) unless
 require "quixote/version"
 
 class Quixote
-  attr_accessor :min, :max, :range_by, :last
+  attr_accessor :min, :max, :range_by, :last, :progress
 
   def initialize(options={})
+    start = options.delete(:start)
+
     defaults = {
       max: 100,
       min: 0,
@@ -17,11 +19,13 @@ class Quixote
       send("#{key}=", value)
     end
 
-    @last = random_start_point
+    @last = start || random_start_point
   end
 
   def next
-    if last == max
+    if progress
+      run_custom
+    elsif last == max
       decrement
     elsif last == min || (rand < 0.5)
       increment
@@ -45,5 +49,9 @@ class Quixote
 
   def random_start_point
     rand((max-min)+1) + min
+  end
+
+  def run_custom
+    @last = progress.call(@last)
   end
 end

@@ -26,17 +26,15 @@ An initial value will be randomly generated and can be accessed with `#last`:
 
     percentage.last #=> 58
 
-If you want to enforce a certain starting value, just set last to whatever you want:
+If you want to enforce a certain starting value, you can provide that as well:
 
-    percentage.last = 60
+    percentage = Quixote.new(start: 15, min: 0, max: 100, range_by: 10)
 
 By default each following value will range up or down by a random value up to a max of `range_by`. To get a series of stateful values just call `#next`:
 
     percentage.next #=> 64
     percentage.next #=> 66
     percentage.next #=> 58
-
-You can use `#last` to retrieve the most recently generated number or move the range to a number you select at any time.
 
 This makes it trivial to generate stateful runs of any length you want:
 
@@ -45,6 +43,18 @@ This makes it trivial to generate stateful runs of any length you want:
 
     values #=> [49, 55, 48, …]
 
+You can use `#last` to retrieve the most recently generated number or move the range to a number you select at any time.
+
+## Custom Progressions
+
+If you want more complex progression behavior you can provide your own lambda:
+
+    by_two = ->(last) { last + 2 }
+    incrementor = Quixote.new(start: 0, progress: by_two)
+
+    incrementor.last #=> 0
+    incrementor.next #=> 2
+    incrementor.next #=> 4
 
 ## Contribution
 

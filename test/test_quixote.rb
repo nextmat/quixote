@@ -18,7 +18,12 @@ class TextQuixote < MiniTest::Spec
     assert_equal 80, q.range_by
   end
 
-  def test_starting_point
+  def test_set_starting_point
+    q = Quixote.new(start: 55)
+    assert_equal 55, q.last
+  end
+
+  def test_random_starting_point
     100.times do
       q = Quixote.new(max: 20, min: 10)
       assert q.last >= 10, "#{q.last} is < min (10)"
@@ -48,6 +53,32 @@ class TextQuixote < MiniTest::Spec
     end
     assert_equal 6, deltas.max
     assert_equal 0, deltas.min
+  end
+
+  def test_increment_lambda
+    by_two = ->(last) { last + 2 }
+    q = Quixote.new(start: 0, progress: by_two)
+
+    assert_equal 2, q.next
+    assert_equal 4, q.next
+  end
+
+  def test_alternating_lambda
+    alternate = lambda do |last|
+      @runs ||= 0
+      @runs += 1
+      if (@runs % 2) == 0
+        0
+      else
+        5
+      end
+    end
+    q = Quixote.new(start: 0, progress: alternate)
+
+    assert_equal 5, q.next
+    assert_equal 0, q.next
+    assert_equal 5, q.next
+    assert_equal 0, q.next
   end
 
 end
