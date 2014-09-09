@@ -1,7 +1,7 @@
 Quixote
 =======
 
-[![Gem Version](https://badge.fury.io/rb/quixote.svg)](http://badge.fury.io/rb/quixote)
+[![Gem Version](https://badge.fury.io/rb/quixote.svg)](http://badge.fury.io/rb/quixote) [![Build Status](https://travis-ci.org/nextmat/quixote.svg?branch=master)](https://travis-ci.org/nextmat/quixote)
 
 A simple tool for statefully generating time-series data. Requires Ruby 1.9 or greater.
 
