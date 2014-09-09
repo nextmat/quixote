@@ -1,7 +1,7 @@
 Quixote
 =======
 
-A simple tool for statefully generating time-series data.
+A simple tool for statefully generating time-series data. Requires Ruby 1.9 or greater.
 
 ## Installation
 
