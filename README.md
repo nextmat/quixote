@@ -1,6 +1,8 @@
 Quixote
 =======
 
+[![Gem Version](https://badge.fury.io/rb/quixote.svg)](http://badge.fury.io/rb/quixote)
+
 A simple tool for statefully generating time-series data. Requires Ruby 1.9 or greater.
 
 ## Installation
